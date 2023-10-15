@@ -19,16 +19,12 @@ void printGraph(vector<int>adj[],int v){
 }
 
 void DFSrec(vector<int>adj[],int s,bool visited[]){
-
-
     visited[s]=true;
     cout<<s<<"---->";
-
     for(auto i:adj[s]){
+        if(visited[i]==false)
             DFSrec(adj,i,visited);
     }
-
-
 }
 
 void DFS(vector<int>adj[],int v,int s){
@@ -36,13 +32,14 @@ void DFS(vector<int>adj[],int v,int s){
     for(int i=0;i<v;i++){
         visited[i]=false;
     }
-    DFSrec(adj,0,visited);
+    visited[s]=true;
+    DFSrec(adj,s,visited);
 }
 
 
 int main(){
 
-    int v=6;
+    int v=7;
     vector<int>adj[v];
     addEdge(adj,0,1);
     addEdge(adj,1,2);
@@ -53,7 +50,7 @@ int main(){
     addEdge(adj,6,4);
 
 
-    DFS(adj,6,0);
+    DFS(adj,v,4);
     // printGraph(adj,v);
 
 

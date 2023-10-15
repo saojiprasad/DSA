@@ -27,7 +27,7 @@
 //     int maxAreaOfIsland(vector<vector<int>>grid) {
         
 //         int n=grid.size();
-//         int m=grid[0].size();
+//         int m=grid{0].size();
 //         cout<<n<<"  "<<m<<endl;
 //         vector<vector<bool>>visited(n,vector<bool>(m,false));
 //         int ans=0;
@@ -64,8 +64,10 @@
 #include<vector>
 using namespace std;
 
-int dfs(vector<vector<int>>& grid, vector<vector<bool>>& visited, int i, int j, int n, int m) {
+int dfs(vector<vector<int>>& grid, vector<vector<bool>>& visited, int i, int j) {
     visited[i][j] = true;
+    int n=grid.size();
+    int m=grid[0].size();
     int dx[] = {1, -1, 0, 0};
     int dy[] = {0, 0, 1, -1};
     int ans = 1;
@@ -73,8 +75,8 @@ int dfs(vector<vector<int>>& grid, vector<vector<bool>>& visited, int i, int j, 
     for (int k = 0; k < 4; k++) {
         int nx = i + dx[k];
         int ny = j + dy[k];
-        if (!visited[nx][ny] && nx >= 0 && ny >= 0 && nx < n && ny < m && grid[nx][ny] == 1) {
-            int count = dfs(grid, visited, nx, ny, n, m);
+        if (nx >= 0 && ny >= 0 && nx < n && ny < m &&!visited[nx][ny] &&  grid[nx][ny] == 1) {
+            int count = dfs(grid, visited, nx, ny);
             ans += count;
         }
     }
@@ -84,30 +86,23 @@ int dfs(vector<vector<int>>& grid, vector<vector<bool>>& visited, int i, int j, 
 int maxAreaOfIsland(vector<vector<int>>& grid) {
     int n = grid.size();
     int m = grid[0].size();
-
+    int maxArea=0;
     vector<vector<bool>> visited(n, vector<bool>(m, false));
-    int ans = 0;
+    // int ans = 0;
     for (int i = 0; i < n; i++) {
         for (int j = 0; j < m; j++) {
             if (!visited[i][j] && grid[i][j] == 1) {
-                int len = dfs(grid, visited, i, j, n, m);
-                if (len > ans) {
-                    ans = len;
-                }
+                // int len = dfs(grid, visited, i, j, n, m);.
+                int area = dfs(grid, visited, i, j);
+                maxArea = max(maxArea, area);
             }
         }
     }
-    return ans;
+    return maxArea;
 }
 
 int main() {
-    vector<vector<int>> grid = {
-        {1, 0, 0, 1, 0},
-        {1, 0, 1, 0, 0},
-        {0, 0, 1, 0, 1},
-        {1, 0, 1, 1, 1},
-        {1, 0, 1, 1, 0}
-    };
+    vector<vector<int>> grid = {{0,0,1,0,0,0,0,1,0,0,0,0,0},{0,0,0,0,0,0,0,1,1,1,0,0,0},{0,1,1,0,1,0,0,0,0,0,0,0,0},{0,1,0,0,1,1,0,0,1,0,1,0,0},{0,1,0,0,1,1,0,0,1,1,1,0,0},{0,0,0,0,0,0,0,0,0,0,1,0,0},{0,0,0,0,0,0,0,1,1,1,0,0,0},{0,0,0,0,0,0,0,1,1,0,0,0,0}};
 
     cout << maxAreaOfIsland(grid) << endl;
 
