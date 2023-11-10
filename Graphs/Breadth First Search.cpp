@@ -37,13 +37,7 @@ void BreadthFirstSearch(vector<int>adj[],int v,int s){
                 q.push(i);
             }
         }
-
-
-
-
     }
-
-
 }
 
 int main(){
@@ -60,7 +54,4 @@ int main(){
 
     printGraph(adj,v);
     BreadthFirstSearch(adj,5,0);
-
-
-
 }

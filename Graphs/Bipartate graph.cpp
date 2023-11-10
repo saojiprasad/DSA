@@ -20,6 +20,7 @@ void printGraph(vector<int>adj[],int v){
 
 
 bool dfs(int node,int col,int color[],vector<int>adj[]){
+    
     color[node]=col;
 
     for(auto i:adj[node]){

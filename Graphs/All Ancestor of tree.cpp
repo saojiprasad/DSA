@@ -5,14 +5,7 @@ const int N=1e5;
 vector<int>gr[N];
 int Par[N];
 
-void dfs(int cur,int par){
-    Par[cur]=par;
-    for(auto i:gr[cur]){
-        if(i!=par){
-            dfs(i,cur);
-        }
-    }
-}
+void dfs(int cur,int par){Par[cur]=par;for(auto i:gr[cur]){if(i!=par)dfs(i,cur);}}
 
 int main(){
     int n;

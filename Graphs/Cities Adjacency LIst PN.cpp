@@ -6,7 +6,6 @@
 using namespace std;
 
 class Node{
-    
     public:
     string name;
     list<string>nbrs;
@@ -16,29 +15,24 @@ class Node{
 };
 
 class Graph{
-
     unordered_map<string,Node*>m;
-
         public:
         Graph( vector<string>cities){
             for(auto city:cities){
                 m[city]=new Node(city);
             }
         }
-
         void addEdge(string s,string e,bool undir=false){
             m[s]->nbrs.push_back(e);
             if(undir){
                 m[e]->nbrs.push_back(s);
             }
         }
-
         void printGraph(){
             for(auto str:m){
                 auto city=str.first;
                 cout<<city<<"-->";
                 Node *node=str.second;
-
                 for(auto nbr:node->nbrs){
                     cout<<nbr<<",";
                 }
@@ -59,6 +53,4 @@ int main(){
         g.addEdge("New York","London");
 
         g.printGraph();
-
-
 }
