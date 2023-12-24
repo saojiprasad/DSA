@@ -24,7 +24,7 @@ int fibb(int n){
     return dp[n];
 }
 
-//Space OPtimization
+//Space Optimization
 
 int spaceoptimization(int n){
     if(n==0||n==1){
